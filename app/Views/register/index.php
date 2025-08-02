@@ -8,6 +8,16 @@
 </head>
 
 <body>
+    <?php if (isset($errors) && !empty($errors)): ?>
+        <div style="color: red;">
+            <ul>
+                <?php foreach ($errors as $error): ?>
+                    <li><?= esc($error) ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+
     <form action="<?= base_url('register') ?>" method="POST">
         <label>Nombre:</label>
         <input type="text" name="usu_nombre" required><br>

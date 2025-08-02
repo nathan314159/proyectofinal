@@ -18,12 +18,10 @@ class registerController extends BaseController
         return view('auth/index', ['users' => $users]);
     }
 
-
     public function register()
     {
-        // El problema era que es post estaba en minusculas y en mayusculas funciono POST
+        $errors = [];
         if ($this->request->getMethod() === 'POST') {
-            
             $userModel = new User();
 
             $data = [
@@ -33,12 +31,27 @@ class registerController extends BaseController
                 'usu_password' => $this->request->getPost('usu_password'),
                 'usu_estado'   => 1
             ];
-            
-            $userModel->register($data);
-            // Puedes redirigir o mostrar mensaje aquí si quieres
+
+            if (!$userModel->register($data)) {
+                $errors = $userModel->errors();
+            } else {
+                return redirect()->to('/mensaje/success');
+            }
         }
 
-        // Siempre muestra el formulario
-        return view('register/index');
+        return view('register/index', ['errors' => $errors]);
+    }
+
+    public function delete()
+    {
+        $userModel = new User();
+        $usu_id = $this->request->getPost('usu_id');
+        $total = $userModel->countAll();
+        echo $total;
+        if ($total <= 1) {
+            return redirect()->back()->with('error', 'Debe quedar al menos un usuario en el sistema.');
+        }
+        $userModel->delete($usu_id);
+        return redirect()->back()->with('success', 'Usuario eliminado correctamente.');
     }
 }

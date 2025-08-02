@@ -21,7 +21,7 @@ class AuthUserController extends BaseController
         $usu_password = $this->request->getPost('usu_password');
         $usuario = $model->where('usu_email', $usu_email)->first();
 
-        // print_r($usuario['usu_id']);
+        //print_r($usuario['usu_id']);
 
         if ($usuario !== null && $usuario['usu_password'] === $usu_password) {
             session()->set([
@@ -29,7 +29,7 @@ class AuthUserController extends BaseController
                 'usu_nombre' => $usuario['usu_nombre'],
                 'isLoggedIn' => true
             ]);
-            return redirect()->to('/mensaje/success'); // Página protegida
+            return redirect()->to('/register/mostarUsuarios'); // Página protegida
         } else {
             return redirect()->to('/login')->with('error', 'Cédula o contraseña incorrecta');
         }

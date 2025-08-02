@@ -13,6 +13,13 @@ class User extends Model
     protected $protectFields    = true;
     protected $allowedFields    = ['usu_nombre', 'usu_apellido', 'usu_email', 'usu_password', 'usu_estado'];
 
+    protected $validationRules = [
+        'usu_nombre'   => 'required|min_length[2]',
+        'usu_apellido' => 'required|min_length[2]',
+        'usu_email'    => 'required|valid_email|is_unique[tbl_user.usu_email]',
+        'usu_password' => 'required|min_length[6]',
+    ];
+    
     protected $useTimestamps = false;
     // protected $dateFormat    = 'datetime';
     // protected $createdField  = 'created_at';
