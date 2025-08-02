@@ -14,3 +14,4 @@ $routes->post('login', 'auth\AuthUserController::login');
 $routes->get('mensaje/success', function() {return view('mensaje/success');
 });
 $routes->post('register/delete', 'register\registerController::delete');
+$routes->post('register/edit', 'register\registerController::delete');

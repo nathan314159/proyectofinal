@@ -22,7 +22,7 @@
             </div>
             <div class="usu_password">
                 <label for="usu_password">Password</label>
-                <input type="text" name="usu_password" id="usu_password" require>
+                <input type="password" name="usu_password" id="usu_password" require>
             </div>
             <button type="submit">Ingresar</button>
         </form>

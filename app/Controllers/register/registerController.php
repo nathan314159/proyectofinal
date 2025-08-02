@@ -23,12 +23,15 @@ class registerController extends BaseController
         $errors = [];
         if ($this->request->getMethod() === 'POST') {
             $userModel = new User();
+            $password = $this->request->getPost('usu_password');
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
             $data = [
                 'usu_nombre'   => $this->request->getPost('usu_nombre'),
                 'usu_apellido' => $this->request->getPost('usu_apellido'),
                 'usu_email'    => $this->request->getPost('usu_email'),
-                'usu_password' => $this->request->getPost('usu_password'),
+                'usu_password' => $hashedPassword,
+
                 'usu_estado'   => 1
             ];
 

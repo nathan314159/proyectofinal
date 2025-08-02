@@ -22,7 +22,7 @@
             background-color: #dddddd;
         }
 
-        #btnEliminar{
+        #btnEliminar {
             height: 35px;
             width: 80px;
             background-color: red;
@@ -32,6 +32,23 @@
             border-radius: 10px;
 
         }
+
+        #btnEditar {
+            height: 35px;
+            width: 80px;
+            background-color: yellow;
+            color: black;
+            cursor: pointer;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+
+        #acciones {
+            display: flex;
+            gap: 10px;
+        }
+
+
     </style>
 </head>
 
@@ -62,13 +79,13 @@
                         <td><?= esc($user['usu_nombre']) ?></td>
                         <td><?= esc($user['usu_apellido']) ?></td>
                         <td><?= esc($user['usu_email']) ?></td>
-                        <td>
+                        <td id="acciones">
                             <form action="<?= base_url('register/delete') ?>" method="post" onsubmit="return confirm('¿Seguro que deseas eliminar este usuario?');">
                                 <input type="hidden" name="usu_id" value="<?= esc($user['usu_id']) ?>">
                                 <button id="btnEliminar" type="submit">Eliminar</button>
                             </form>
-
                         </td>
+
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
